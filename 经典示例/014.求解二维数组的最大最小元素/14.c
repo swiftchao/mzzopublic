@@ -1,3 +1,4 @@
+#include <stdio.h>
 #define MAXN 20
 int a[MAXN][MAXN];
 

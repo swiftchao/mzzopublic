@@ -11,7 +11,7 @@ void main()
     printf("int : %d bytes\n", sizeof(int));
     /* char型的字节数为1 */
     printf("char : %d byte\n", sizeof(char));
-	printf("unsigned char : %d byte\n", sizeof(unsigned char));
+    printf("unsigned char : %d byte\n", sizeof(unsigned char));
     /* short型的字节数为2 */
     printf("short : %d bytes\n", sizeof(short));
     /* long型的字节数为4 */

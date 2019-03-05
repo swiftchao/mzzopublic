@@ -8,7 +8,7 @@ int main()
 
   printf("Please input a string with a # in the end.\n");
   scanf("%c",&ch);  /* */
-  while(ch != '#')  /* */
+  while(ch != '#')  /* 直到输入以#结尾结束循环，否则一直循环 */
   {
     if(ch >= '0' && ch <= '9')
     {
@@ -17,7 +17,7 @@ int main()
       scanf("%c", &nch);  /* */
       for(k=0; k < count; k++)  /* */
       {
-        printf("%c", nch);  
+        printf("%c", nch);  /* 遇到输入的是数字 后面的字符 重复输出数字加一次*/
       }
     }
     else
