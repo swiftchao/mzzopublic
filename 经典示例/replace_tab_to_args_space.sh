@@ -55,6 +55,6 @@ convert_relative_path_to_absolute_path
 get_soft_home
 TWO_SPACE="  "
 FOUR_SPACE="    "
-#NUMBER_SPACE="${TWO_SPACE}"
-NUMBER_SPACE="${FOUR_SPACE}"
+NUMBER_SPACE="${TWO_SPACE}"
+#NUMBER_SPACE="${FOUR_SPACE}"
 replace_tab_to_args_space $*
