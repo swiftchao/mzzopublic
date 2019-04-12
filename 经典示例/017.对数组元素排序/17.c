@@ -110,12 +110,45 @@ void shell_sort(int iarr[], int n) {
 }
 
 /*快速排序*/
+void quick_sort(int iarr[], int low, int high) {
+  int start, key; 
+  /*1.排序开始low = 0, high = n - 1*/
+  start = low;
+  key = iarr[low]; /*2.以数组第一个元素为关键数据,赋值给key,即key=iarr[0]*/
+  if (low >= high) { /*如果low >= high说明排序结束了*/
+    return;
+  }
+  while (low < high) {
+    /*3.从high开始向前搜索,即由后向前搜索(--high),找到第一个小于key的值iarr[high],将iarr[high]和iarr[low]互换*/
+    while (low < high && key <= iarr[high]) {
+      --high; /*向前寻找*/
+    }
+
+    /*3.从low开始向后搜索,即由前向后搜索(++low),找到第一个大于key的值iarr[low],将iarr[low]和iarr[high]互换*/
+    while (low < high && key >= iarr[low]) {
+      ++low; /*向后寻找*/
+    }
+
+    if (key > iarr[high] && key < iarr[low]) {
+      swap(&iarr[low], &iarr[high]);
+      ++low;
+      --high;
+    }
+  }
+  /*low == high 相遇将基准数和low==high所处的数字交换*/
+  swap(&key, &iarr[low]);
+  /*此时基准左边的都比基准小,基准右边的都比基准大,剩下就是分别左右重复这个过程*/
+  /*用同样的方式对分出来的左边的部分进行同上的做法*/
+  quick_sort(iarr, start, low -1);
+  /*用同样的方式对分出来的右边的部分进行同上的做法*/
+  quick_sort(iarr, low + 1, high);
+}
 
 int main(void) {
   int i;
   //int s[] = {8, 4, 0, -1, 6, 0, -5, 1, -20, 200, 2, 10, 53, 7, 9};
-  //int s[] = {8, 4, 0, -1, 6, 0, -5, 1, -20, 200, 2, 10, 53, 7, 9, 8, 13, 16, 28};
-  int s[] = {21, 25, 48, 25, 16, 8};
+  int s[] = {8, 4, 0, -1, 6, 0, -5, 1, -20, 200, 2, 10, 53, 7, 9, 8, 13, 16, 28};
+  //int s[] = {21, 25, 48, 25, 16, 8};
   printf("The array before reset is:");
   for (i = 0; i < sizeof(s)/sizeof(s[0]); ++i) {
     printf("%4d", s[i]);
@@ -131,8 +164,12 @@ int main(void) {
   //sort = bubble_sort;
   //sort = bubble_sort2;
   //sort = straight_insert_sort;
-  sort = shell_sort;
-  sort(s, n);
+  //sort = shell_sort;
+  //sort(s, n);
+
+  int low = 0;
+  int high = n - 1;
+  quick_sort(s, low, high);
   endtime = clock();
   printf("Sort Running Time: %dms\n", (double)(endtime - begintime)/CLOCKS_PER_SEC);
 
