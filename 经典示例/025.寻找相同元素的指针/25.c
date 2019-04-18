@@ -11,7 +11,7 @@
 int *search(int arr[], int arr2[], int n, int n2) {
   int *pa, *pa2; 
   pa = arr;
-  pa2 = arr2; /*为ca,ca2设定初值*/
+  pa2 = arr2; /*为pa,pa2设定初值*/
   while (pa < (arr + n) && pa2 < (arr2 + n2)) {
     /*数组一的值小于数组二的值,继续移动数组指针寻找下一个值和数组二比较*/
     if (*pa < *pa2) {
