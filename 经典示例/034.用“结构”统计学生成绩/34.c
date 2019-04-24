@@ -95,24 +95,32 @@ int main(void) {
   }
 
   /*选择排序用总成绩排序*/
-  for (i = 0; i < n -1; ++i) {
-    for (j = i; j < n -1; ++j) {
+  for (i = 0; i < n; ++i) {
+    for (j = i + 1; j < n; ++j) {
       /*
-      if (total[order[i]] < total[order[j+1]]) { //交换名次
+      if (total[order[i]] < total[order[j]]) {
+        tmp = students[order[i]].order;
+        students[order[i]].order = students[order[j]].order;
+        students[order[j]].order = tmp;
         tmp = order[i];
-        order[i] = order[j+1];
-        order[j+1] = tmp;
+        order[i] = order[j];
+        order[j] = tmp;
       }
       */
-      if (students[i].total < students[j+1].total) { //根据总分交换名次
+      ///*
+      if (students[order[i]].total < students[order[j]].total) { 
+        //名次的默认输出顺序是order[i],是输入的顺序,order[i]相当于下标,下标在变,下标对应的值不变,依次比较
+        //根据总分交换名次,根据order的值的变换移动,相当于移动了student[order[i]]的位置
+        //交换赋值学生成绩的排名
+        tmp = students[order[i]].order;
+        students[order[i]].order = students[order[j]].order;
+        students[order[j]].order = tmp;
+        //交换order[i]数组的值
         tmp = order[i];
-        order[i] = order[j+1];
-        order[j+1] = tmp;
-        /*交换赋值学生成绩的排名*/
-        tmp = students[i].order;
-        students[i].order = students[j+1].order;
-        students[j+1].order = tmp;
+        order[i] = order[j];
+        order[j] = tmp;
       }
+     //*/
     }
   }
 
@@ -120,7 +128,8 @@ int main(void) {
   /*输出学生信息*/
   for (j = 0; j < n; ++j) {
     /*名次也刚好是结构体指针的位移*/
-    //writestu(students + order[j]);
+    //printf("order[%d]:%d\n", j, order[j]);
+    //printf("students:%p    students + order[%d]:%p\n", students, j, students + order[j]);
     writestu(students + order[j]);
   }
   return 0;
